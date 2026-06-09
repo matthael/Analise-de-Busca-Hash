@@ -1,6 +1,8 @@
 #ifndef TESTES_H
 #define TESTES_H
 
-void executar_testes(void);
+#include "hash.h"
+
+void executarTestesHash(TabelaHash *hash, Produto *produtos, int quantidade);
 
 #endif
