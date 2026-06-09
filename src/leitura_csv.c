@@ -4,7 +4,6 @@
 #include "leitura_csv.h"
 
 Produto* carregarCSV(const char* nomeArquivo, int* quantidade) {
-
     FILE *arquivo = fopen(nomeArquivo, "r");
 
     if (!arquivo) {
@@ -25,32 +24,24 @@ Produto* carregarCSV(const char* nomeArquivo, int* quantidade) {
 
     char linha[256];
 
-    // Pula o cabeçalho
     fgets(linha, sizeof(linha), arquivo);
 
     while (fgets(linha, sizeof(linha), arquivo)) {
-
         Produto p;
         char categoria[100];
 
-        // Caso categoria venha entre aspas
         if (sscanf(linha, "%d,%50[^,],\"%99[^\"]\",%f",
                    &p.id, p.nome, categoria, &p.valor) == 4) {
-
-            strcpy(p.categoria, categoria);
+            strncpy(p.categoria, categoria, 30);
+            p.categoria[30] = '\0';
         }
-
-        // Caso categoria venha sem aspas
         else if (sscanf(linha, "%d,%50[^,],%30[^,],%f",
                         &p.id, p.nome, p.categoria, &p.valor) == 4) {
         }
-
-        // Linha inválida
         else {
             continue;
         }
 
-        // Realocação dinâmica
         if (*quantidade >= capacidade) {
             capacidade *= 2;
 
@@ -69,17 +60,14 @@ Produto* carregarCSV(const char* nomeArquivo, int* quantidade) {
         vetor[*quantidade] = p;
         (*quantidade)++;
 
-        // Exibe progresso a cada 1000 registros
         if ((*quantidade % 1000) == 0) {
             printf("\rRegistros carregados: %d", *quantidade);
             fflush(stdout);
         }
     }
 
-    // Quebra linha ao finalizar
     printf("\nLeitura concluida com sucesso!\n");
 
     fclose(arquivo);
-
     return vetor;
 }
