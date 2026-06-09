@@ -1,0 +1,51 @@
+# Executáveis Windows
+*.exe
+
+# Executáveis Linux
+*.out
+
+# Objetos compilados
+*.o
+*.obj
+
+# Bibliotecas
+*.a
+*.so
+*.dll
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# Cache
+.cache/
+
+# Arquivos gerados pelo Make
+programa
+programa.exe
+
+# VS Code
+.vscode/
+
+# Configurações locais
+.settings/
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de backup
+*~
+*.bak
+
+# Pastas de build
+build/
+dist/
+
+# Arquivos de cobertura de testes
+*.gcda
+*.gcno
+*.gcov
