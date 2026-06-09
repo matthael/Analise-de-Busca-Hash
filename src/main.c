@@ -20,11 +20,6 @@ int main() {
 
     TabelaHash *hash = criarHash(quantidade);
 
-    if (hash == NULL) {
-        free(produtos);
-        return 1;
-    }
-
     printf("\nCarregando tabela hash...\n");
 
     for (int i = 0; i < quantidade; i++) {
